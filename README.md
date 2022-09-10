@@ -1,0 +1,1 @@
+Very Basic Mood Manager Smart COntract.

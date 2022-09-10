@@ -1,0 +1,69 @@
+import { ethers } from "hardhat";
+
+const main = async () => {
+    const Mood = await ethers.getContractFactory("moodDiary");
+    const mood = Mood.attach("0x7779F25f0dE514Aa686fAC9C8049B8F48B5a28bA");
+
+    const setMood = await mood.setMood("Happy as Fuck");
+    const setMoodTrxRcp = await setMood.wait();
+    console.log("Current Mood: ", setMoodTrxRcp);
+
+    const setNewMood = await mood.setMood("I will be great");
+    const setNewMoodTrxRcp = await setNewMood.wait();
+    console.log("Current Mood: ", setNewMoodTrxRcp);
+
+    const getMood = await mood.getMood();
+    console.log("Current Mood: ", getMood)
+}
+ 
+main().catch((error) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
+
+  /*
+
+  Current Mood:  {
+  to: '0x7779F25f0dE514Aa686fAC9C8049B8F48B5a28bA',
+  from: '0xe61E4D6A5Bd95DD6384B0bfd6425616a16AF4AF1',
+  contractAddress: null,
+  transactionIndex: 34,
+  gasUsed: BigNumber { value: "45081" },
+  logsBloom: '0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+  blockHash: '0xc71976d7866cbc43bdffb112ebe67b942fe7370ccd147eebbcef42374c3256f6',
+  transactionHash: '0x40378ff4dea56c84b6f818b0899e825088cc0952aca24f3e19ca4802c241405a',
+  logs: [],
+  blockNumber: 7566117,
+  confirmations: 1,
+  cumulativeGasUsed: BigNumber { value: "9027342" },
+  effectiveGasPrice: BigNumber { value: "99999990" },
+  status: 1,
+  type: 0,
+  byzantium: true,
+  events: []
+}
+Current Mood:  {
+  to: '0x7779F25f0dE514Aa686fAC9C8049B8F48B5a28bA',
+  from: '0xe61E4D6A5Bd95DD6384B0bfd6425616a16AF4AF1',
+  contractAddress: null,
+  transactionIndex: 74,
+  gasUsed: BigNumber { value: "30262" },
+  logsBloom: '0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+  blockHash: '0x147b7db874383d9ae78413ec311d43471f012be787b197d2f9340455c8815709',
+  transactionHash: '0x04050b0478dc8c366a3a85a0a73359bec65f7eae45ce1ce85bf1bd9394502e10',
+  logs: [],
+  blockNumber: 7566118,
+  confirmations: 1,
+  cumulativeGasUsed: BigNumber { value: "20655144" },
+  effectiveGasPrice: BigNumber { value: "99999990" },
+  status: 1,
+  type: 0,
+  byzantium: true,
+  events: []
+}
+Current Mood:  I will be great
+
+
+  */
+
+ 
